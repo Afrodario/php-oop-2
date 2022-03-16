@@ -5,6 +5,7 @@ class User {
     public $lastName;
     public $registration = false;
     public $discount = 0;
+    public $cardExpire;
     public $creditCardValidation = false;
     
     //Costruttore
@@ -32,9 +33,13 @@ class User {
         }
     }
 
+    public function getCardExpire($_expire) {
+        $this->cardExpire = $_expire;
+    }
+
     //Funzione di verifica validità carta di credito
     public function setCardValidation($_year) {
-        if ($_year < 2022) {
+        if ($_year >= 2022) {
             echo("<p>La tua carta di credito è stata accettata.</p>");
             return $this->creditCardValidation = true;
         } else {

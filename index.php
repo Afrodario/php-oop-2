@@ -16,25 +16,38 @@ require_once __DIR__ . '/classes/Accessories.php';
 //Inizializzo un nuovo utente e un prodotto da comprare
 $firstUser = new User("Homer", "Simpson");
 $dogFood = new Food("Multifit", 23, "Cane", "MEDICA", "Pollo", 10);
+$catAccessory = new Accessories("Trixie", 7, "Gatto", "MEOW", "Ciotola", "Eat-on-Feet");
 
 //Applico le funzioni di verifica di registrazione, sconto e validazione pagamento
 $firstUser->setRegistration(true);
-$firstUser->setDiscount();
-$firstUser->setCardValidation(2024);
+if ($firstUser->registration == true) {
 
-$productDiscount = $dogFood->price * $firstUser->discount / 100;
-$productPrice = $dogFood->price - $productDiscount;
-echo("<p> Hai acquistato il prodotto a " . $productPrice . " euro!</p>");
+    $firstUser->setDiscount();
+    $firstUser->getCardExpire(2023);
+    $firstUser->setCardValidation($firstUser->cardExpire);
+
+    $productDiscount = $dogFood->price * $firstUser->discount / 100;
+    $productPrice = $dogFood->price - $productDiscount;
+    echo("<p> Hai acquistato il prodotto a " . $productPrice . " euro!</p>");
+
+    
+    $productDiscountTwo = $catAccessory->price * $firstUser->discount / 100;
+    $productPriceTwo = $catAccessory->price - $productDiscountTwo;
+    echo("<p> Hai acquistato il prodotto a " . $productPriceTwo . " euro!</p>");
+} else {
+    echo("<p>Registrati al nostro sito!</p>");
+};
+
+
+
 
 var_dump($firstUser);
-var_dump($dogFood);
 
-/*
 
-$catAccessory = new Accessories("Trixie", 7, "Gatto", "MEOW", "Ciotola", "Eat-on-Feet");
 
 var_dump($dogFood);
+
+
 var_dump($catAccessory);
-*/
 
 ?>
