@@ -8,21 +8,25 @@
 // Alcuni prodotti (es. antipulci) avranno la caratteristica che saranno disponibili solo in un periodo particolare (es. da maggio ad agosto).
 
 require_once __DIR__ . '/classes/User.php';
-require_once __DIR__ . '/classes/RegisteredUser.php';
 require_once __DIR__ . '/classes/Product.php';
 require_once __DIR__ . '/classes/Food.php';
 require_once __DIR__ . '/classes/Accessories.php';
 
 $firstUser = new User("Homer", "Simpson");
-$secondUser = new RegisteredUser("Ned", "Flanders", "flanders@gmail.com");
+// $secondUser = new RegisteredUser("Ned", "Flanders", "flanders@gmail.com");
+
+$firstUser->setRegistration(true);
+$firstUser->setDiscount();
+$firstUser->setCardValidation(2024);
 
 var_dump($firstUser);
-var_dump($secondUser);
 
+/*
 $dogFood = new Food("Multifit", 23, "Cane", "MEDICA", "Pollo", 10);
 $catAccessory = new Accessories("Trixie", 7, "Gatto", "MEOW", "Ciotola", "Eat-on-Feet");
 
 var_dump($dogFood);
 var_dump($catAccessory);
+*/
 
 ?>
